@@ -25,3 +25,15 @@ $ mvn package
 $  java -jar ./jetty-generic-ws.jar
 ```
 
+### Adding a new service
+In `Services.java` file, add a new rest/json service
+```
+@GET
+@Produces(MediaType.APPLICATION_JSON)
+@Path("/simpleArg/{path}")
+public String[] simpleArg( @Context SecurityContext sc, @PathParam("path") String iPath  ) {
+	LOGGER.info("Executing simple code with argument :"+iPath);
+	return new String[]{"This is a test"};
+}
+```	
+	
