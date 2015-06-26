@@ -29,17 +29,17 @@ public class Services {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/simpleArg/{path}")
-	public String[] listStatesForACSData( @Context SecurityContext sc, @PathParam("path") String iPath  ) {
+	public String[] simpleArg( @Context SecurityContext sc, @PathParam("path") String iPath  ) {
 		LOGGER.info("Executing simple code with argument :"+iPath);
-		return new String[]{};
+		return new String[]{"This is a test"};
 	}
 	
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/simplePost")
-	public Object getDownloadStatus( @Context SecurityContext sc,
-									     	  String[] iList) { 
+	public Object simplePost( @Context SecurityContext sc,
+									   String[] iList) { 
 		return null;
 	}
 	
