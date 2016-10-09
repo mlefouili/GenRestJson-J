@@ -21,6 +21,7 @@ public class Services {
 
 	protected static final Logger LOGGER = Logger.getLogger(Services.class.getName());
 	static Queue<String> myQueue = new LinkedList<String>();
+	static Queue<String> anotherQueue = new LinkedList<String>();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -101,6 +102,32 @@ public class Services {
 		else
 		{
 			return new String[]{myQueue.poll()};
+		}
+	}
+	
+	
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/triggerLaunch")
+	public String[] triggerAction( @Context SecurityContext sc ) {
+		LOGGER.info("Trigger Launch ...");
+		anotherQueue.add("launch");
+		return new String[]{"OK launch triggered"};
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/getTrigger")
+	public String[] getTrigger( @Context SecurityContext sc ) {
+		LOGGER.info("Get Trigger ...");
+		if (anotherQueue.isEmpty())
+		{
+			return new String[]{"empty"};
+		}
+		else
+		{
+			return new String[]{anotherQueue.poll()};
 		}
 	}
 	
